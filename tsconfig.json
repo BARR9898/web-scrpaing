@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    "target": "ESNext",           // Compilar a la última versión de JavaScript
+    "module": "ESNext",           // Utilizar módulos ECMAScript (import/export)
+    "moduleResolution": "node",   // Resolver módulos al estilo de Node.js
+    "esModuleInterop": true,      // Compatibilidad con módulos CommonJS
+    "strict": true,               // Comprobación estricta de tipos
+    "skipLibCheck": true,         // Evitar problemas con dependencias
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*.ts"                 // Incluir todos los archivos TypeScript dentro de la carpeta src
+  ]
 }
