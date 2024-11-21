@@ -6,17 +6,20 @@ interface IProduct extends Document {
   price: string;
   url: string;
   imageUrl: string;
+  popularity:string;
 }
 
 // Definir el esquema del producto
 const productSchema = new Schema<IProduct>({
   title: { type: String, required: true },
   price: { type: String, required: true },
+  popularity: { type: String, required: true, unique: true },
   url: { type: String, required: true, unique: true },
-  imageUrl: { type: String, required: true }
+  imageUrl: { type: String, required: true },
 }, { timestamps: true }); // timestamps agregará las fechas de creación y actualización
 
 // Crear el modelo a partir del esquema
 const Product = mongoose.model<IProduct>('Product', productSchema);
 
-export default Product;
+
+export { Product, IProduct };

@@ -1,25 +1,28 @@
 import { Item,IItem } from "../models/data.interface";
+import {Product} from "../models/products.model";
 
 class ItemService {
-    async createItem(data: Partial<IItem>): Promise<IItem> {
+    async saveItemsService(data: Partial<IItem>): Promise<IItem> {
         const item = new Item(data);
         return await item.save();
     }
-
+                                                                                                                                   
     async getItems(): Promise<IItem[]> {
-        return await Item.find();
+        console.log('PRODUCT',Product);
+        
+        return await Product.find();
     }
 
     async getItem(id: string): Promise<IItem | null> {
-        return await Item.findById(id);
+        return await Product.findById(id);
     }
 
     async updateItem(id: string, data: Partial<IItem>): Promise<IItem | null> {
-        return await Item.findByIdAndUpdate(id, data, { new: true });
+        return await Product.findByIdAndUpdate(id, data, { new: true });
     }
 
     async deleteItem(id: string): Promise<IItem | null> {
-        return await Item.findByIdAndDelete(id);
+        return await Product.findByIdAndDelete(id);
     }
 }
 

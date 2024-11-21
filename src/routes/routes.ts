@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createItem, getItems, getItem, updateItem, deleteItem } from '../controllers/web-scraping.controller';
+import {  getItems, getItem, updateItem, deleteItem, startCrawler } from '../controllers/web-scraping.controller';
 
 const router = Router();
 
-router.post('/', createItem);
+router.post('/save', startCrawler);
 router.get('/', getItems);
 router.get('/:id', getItem);
 router.put('/:id', updateItem);
