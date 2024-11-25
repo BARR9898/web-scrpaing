@@ -1,9 +1,8 @@
 
 import { Request, Response } from 'express';
 import ItemService from '../services/data.service';
-import { main } from '../utils/crawler';
 import { scrapeData } from '../utils/crawler2';
-
+import { main } from '../utils/crawler';
 
 export const getItems = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -53,6 +52,14 @@ export const deleteItem = async (req: Request, res: Response): Promise<void> => 
     }
 };
 
+export const getDataChartsController = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const items = await ItemService.getDataToCharts();
+        res.json(items);
+    } catch (error) {
+        res.status(500).json({ message: error instanceof Error ? error.message : 'Error desconocido' });
+    }
+};
 
 export const startCrawler = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -60,12 +67,12 @@ export const startCrawler = async (req: Request, res: Response): Promise<void> =
         console.log('entra');
         console.log('URL',req.body.url);
 
-        scrapeData()
+        main(URL)
             .then(() => {
                 console.log('Scraping successfull');  
             })
-            .catch(() => {
-                console.log('Scraping error'); 
+            .catch((error:any) => {
+                console.log('Scraping error', error); 
             })
         
 
